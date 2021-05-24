@@ -34,7 +34,7 @@ class TransformerXL(object):
         self.training_seqs = training_seqs
         self.checkpoint = checkpoint
         if self.is_training: # train from scratch or finetune
-            self.batch_size = 8
+            self.batch_size = 16
         else: # inference
             self.batch_size = 1
         # load model
@@ -263,7 +263,7 @@ class TransformerXL(object):
                     with open(logfile, 'a') as f:
                         f.write('epoch = {:03d} | loss = {:.5f} | time = {:.2f}\n'.format(e, np.mean(total_loss), time.time()-st))
             # stop
-            if np.mean(total_loss) <= 0.05:
+            if np.mean(total_loss) <= 0.25:
                 break
 
     ########################################

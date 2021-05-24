@@ -188,6 +188,8 @@ def convert_events_to_midi(event_source, output_midi, chord_processor, use_struc
   else:
     midi_dec = midi_dec = MidiDecoder(event_source, chord_processor, transfer_to_full_event=transfer_to_full_event, vocab=vocab, max_duration=max_duration)
 
+  # print(event_source)
+
   midi_dec.get_beats()
   midi_dec.get_chords()
   midi_dec.get_notes()
@@ -203,7 +205,7 @@ def convert_events_to_midi(event_source, output_midi, chord_processor, use_struc
 
 if __name__ == '__main__':
   ch_proc = pickle.load(open('./pickles/chord_processor.pkl', 'rb'))
-  midi_dec = MidiDecoder('test_out.csv', ch_proc)
+  midi_dec = MidiDecoder('output/demo.csv', ch_proc)
   midi_dec.get_beats()
 
   for k in sorted(midi_dec.beat_dict.keys(), key=lambda x: (x[0], x[1])):
